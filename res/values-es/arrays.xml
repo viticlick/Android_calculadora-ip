@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <string-array name="bases">
+        <item>@string/decimal</item>
+        <item>@string/binary</item>
+        <item>@string/octal</item>
+        <item>@string/hexadecimal</item>
+    </string-array>
+    
+    <string-array name="baseValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    
+
+</resources>
