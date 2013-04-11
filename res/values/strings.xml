@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">NetCalculator</string>
+    <string name="action_settings">Settings</string>
+    <string name="close">Close</string>
+    <string name="error">Error</string>
+    <string name="errorHighCIDR">The CIDR value can t be greater than 31</string>
+    <string name="errorIPpart">The value can t be greater than 255</string>
+    <string name="calculate">Calculate</string>
+    <string name="reset">Reset</string>
+    <string name="ip">IP:</string>
+    <string name="cidr">CIDR:</string>
+    <string name="point">.</string>
+    <string name="slash">/</string>
+    <string name="hosts">Hosts:</string>
+    <string name="address">Address:</string>
+    <string name="broadcast">Broadcast:</string>
+    <string name="netAddres">Net Address:</string>
+    <string name="mask">Mask:</string>
+    <string name="wildcard">Wilcard:</string>
+    <string name="base">Base</string>
+    <string name="selectBase">Select the base of solution</string>
+    <string name="decimal">Decimal</string>
+    <string name="binary">Binary</string>
+    <string name="octal">Octal</string>
+    <string name="hexadecimal">Hexadecimal</string>
+    <string name="about">Developed by VITICLIC. All rights reserved.</string>
+    <string name="About">About</string>
+    <string name="settings">Settings</string>
+    <string name="exit">Exit</string>
+
+</resources>
