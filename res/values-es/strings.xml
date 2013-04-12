@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NetCalculator</string>
+    <string name="app_name">Calculadora IP</string>
     <string name="action_settings">Configuración</string>
     <string name="close">Cerrar</string>
     <string name="error">Error</string>
@@ -13,18 +13,18 @@
     <string name="point">.</string>
     <string name="slash">/</string>
     <string name="hosts">Hosts:</string>
-    <string name="address">Address:</string>
+    <string name="address">Dirección:</string>
     <string name="broadcast">Broadcast:</string>
     <string name="netAddres">Dirección de red:</string>
     <string name="mask">Máscara:</string>
-    <string name="wildcard">Wilcard:</string>
+    <string name="wildcard">Comodín:</string>
     <string name="base">Base</string>
     <string name="selectBase">Selecciona la base de los resultados</string>
     <string name="decimal">Decimal</string>
     <string name="binary">Binario</string>
     <string name="octal">Octal</string>
     <string name="hexadecimal">Hexadecimal</string>
-    <string name="about">Creado por VITICLIK. Todos los derechos reservados</string>
+    <string name="about">Calculadora IP versión: 1.3. Creado por VITICLIK.</string>
     <string name="About">Acerca de...</string>
     <string name="settings">Configuración</string>
     <string name="exit">Salir</string>
