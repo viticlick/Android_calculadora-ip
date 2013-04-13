@@ -1,8 +1,11 @@
 package es.viclopez.IPClasses;
 
 public class IP {
-
-	public enum BASE { BINARY , DECIMAL , HEXADECIMAL , OCTAL };
+	
+	public int BASE_DECIMAL = 0;
+	public int BASE_BINARY = 1;
+	public int BASE_OCTAL = 2;
+	public int BASE_HEXADECIMAL = 3;
 	
 	//The IP is of the form a.b.c.d
 	private int a;
@@ -71,19 +74,19 @@ public class IP {
 		
 	}
 
-	public final String toString(BASE base){
+	public final String toString(int base){
 		String toret = "";
 		switch( base ){
-		case DECIMAL:
+		case 0:
 			toret = toDecimalString();
 			break;
-		case BINARY:
+		case 1:
 			toret = toBinaryString();
 			break;
-		case OCTAL:
+		case 2:
 			toret = toOctalString();
 			break;
-		case HEXADECIMAL:
+		case 3:
 			toret = toHexString();
 			break;
 		}

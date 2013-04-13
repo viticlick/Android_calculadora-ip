@@ -238,39 +238,13 @@ public class Main extends Activity {
 	private final void printData(IP ip, Mask mask, SubNet subNet, int type) {
 
 		outHosts.setText( Long.toString(subNet.getHosts() ) );
-		switch( type ){
 
-		case 0:
-			outAddress.setText( ip.toString( IP.BASE.DECIMAL ) );
-			outMask.setText( mask.toString(IP.BASE.DECIMAL) );
-			outWildCard.setText( mask.getWildCard().toString(IP.BASE.DECIMAL) );
-			outNetAddress.setText( subNet.getNetAddres().toString(IP.BASE.DECIMAL) );
-			outBroadcast.setText( subNet.getBroadcastAddres().toString(IP.BASE.DECIMAL) );
+		outAddress.setText( ip.toString( type ) );
+		outMask.setText( mask.toString( type) );
+		outWildCard.setText( mask.getWildCard().toString( type) );
+		outNetAddress.setText( subNet.getNetAddres().toString( type ) );
+		outBroadcast.setText( subNet.getBroadcastAddres().toString( type ) );
 
-			break;
-		case 1:
-			outAddress.setText( ip.toString( IP.BASE.BINARY ) );
-			outMask.setText( mask.toString( IP.BASE.BINARY ) );
-			outWildCard.setText( mask.getWildCard().toString( IP.BASE.BINARY ) );
-			outNetAddress.setText( subNet.getNetAddres().toString( IP.BASE.BINARY ) );
-			outBroadcast.setText( subNet.getBroadcastAddres().toString( IP.BASE.BINARY ) );
-			break;
-		case 2:
-			outAddress.setText( ip.toString( IP.BASE.OCTAL ) );
-			outMask.setText( mask.toString( IP.BASE.OCTAL ) );
-			outWildCard.setText( mask.getWildCard().toString( IP.BASE.OCTAL ) );
-			outNetAddress.setText( subNet.getNetAddres().toString( IP.BASE.OCTAL ) );
-			outBroadcast.setText( subNet.getBroadcastAddres().toString( IP.BASE.OCTAL ) );
-			break;
-		case 3:
-			outAddress.setText( ip.toString( IP.BASE.HEXADECIMAL ) );
-			outMask.setText( mask.toString( IP.BASE.HEXADECIMAL ) );
-			outWildCard.setText( mask.getWildCard().toString( IP.BASE.HEXADECIMAL ) );
-			outNetAddress.setText( subNet.getNetAddres().toString( IP.BASE.HEXADECIMAL ) );
-			outBroadcast.setText( subNet.getBroadcastAddres().toString( IP.BASE.HEXADECIMAL ) );
-			break;
-
-		}
 	}
 
 	private final void resetLabels(){
