@@ -23,13 +23,14 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
+        public static final int padding_output=0x7f060002;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
         public static final int TextView01=0x7f0a0000;
-        public static final int about=0x7f0a0019;
+        public static final int about=0x7f0a001a;
         public static final int btCalculateNetwork=0x7f0a0009;
         public static final int btnReset=0x7f0a000a;
         public static final int exit=0x7f0a0001;
@@ -38,22 +39,23 @@ public final class R {
         public static final int ipC=0x7f0a0005;
         public static final int ipD=0x7f0a0006;
         public static final int ipMask=0x7f0a0008;
-        public static final int lblAddress=0x7f0a000b;
-        public static final int lblBroadcast=0x7f0a0013;
+        public static final int lblAddress=0x7f0a000c;
+        public static final int lblBroadcast=0x7f0a0014;
         public static final int lblCIDR=0x7f0a0007;
-        public static final int lblHosts=0x7f0a0015;
+        public static final int lblHosts=0x7f0a0016;
         public static final int lblInsertIP=0x7f0a0002;
-        public static final int lblMask=0x7f0a000d;
-        public static final int lblNetAddress=0x7f0a0011;
-        public static final int lblWildCard=0x7f0a000f;
-        public static final int lytMain=0x7f0a0017;
-        public static final int outAddress=0x7f0a000c;
-        public static final int outBroadcast=0x7f0a0014;
-        public static final int outHosts=0x7f0a0016;
-        public static final int outMask=0x7f0a000e;
-        public static final int outNetAddress=0x7f0a0012;
-        public static final int outWildCard=0x7f0a0010;
-        public static final int settings=0x7f0a0018;
+        public static final int lblMask=0x7f0a000e;
+        public static final int lblNetAddress=0x7f0a0012;
+        public static final int lblWildCard=0x7f0a0010;
+        public static final int lytMain=0x7f0a0018;
+        public static final int outAddress=0x7f0a000d;
+        public static final int outBroadcast=0x7f0a0015;
+        public static final int outHosts=0x7f0a0017;
+        public static final int outMask=0x7f0a000f;
+        public static final int outNetAddress=0x7f0a0013;
+        public static final int outWildCard=0x7f0a0011;
+        public static final int outputLayout=0x7f0a000b;
+        public static final int settings=0x7f0a0019;
     }
     public static final class layout {
         public static final int about=0x7f030000;
