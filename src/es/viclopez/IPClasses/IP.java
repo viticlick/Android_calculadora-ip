@@ -2,10 +2,10 @@ package es.viclopez.IPClasses;
 
 public class IP {
 	
-	public int BASE_DECIMAL = 0;
-	public int BASE_BINARY = 1;
-	public int BASE_OCTAL = 2;
-	public int BASE_HEXADECIMAL = 3;
+	public static final int BASE_DECIMAL = 0;
+	public static final int BASE_BINARY = 1;
+	public static final int BASE_OCTAL = 2;
+	public static final int BASE_HEXADECIMAL = 3;
 	
 	//The IP is of the form a.b.c.d
 	private int a;
