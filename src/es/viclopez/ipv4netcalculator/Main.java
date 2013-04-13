@@ -68,6 +68,8 @@ public class Main extends Activity {
 						nextFocus();
 					}
 				}
+			}else{
+				resetLabels();
 			}
 			calculate();
 		}
