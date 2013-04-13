@@ -2,6 +2,8 @@ package es.viclopez.IPClasses;
 
 public class IP {
 
+	public enum BASE { BINARY , DECIMAL , HEXADECIMAL , OCTAL };
+	
 	//The IP is of the form a.b.c.d
 	private int a;
 	private int b;
@@ -34,15 +36,6 @@ public class IP {
 		
 	}
 
-	public IP or( IP ip ){
-		return new IP( this.a | ip.getA() ,
-				this.b | ip.getB() ,
-				this.c | ip.getC() ,
-				this.d | ip.getD()
-				);
-		
-	}
-	
 	public final IP nextIP(){
 		
 		int ipA = this.a;
@@ -68,8 +61,60 @@ public class IP {
 		
 		return new IP( ipA , ipB , ipC , ipD ); 
 	}
+	
+	public IP or( IP ip ){
+		return new IP( this.a | ip.getA() ,
+				this.b | ip.getB() ,
+				this.c | ip.getC() ,
+				this.d | ip.getD()
+				);
+		
+	}
 
-	public final String toBinaryString(){
+	public final String toString(BASE base){
+		String toret = "";
+		switch( base ){
+		case DECIMAL:
+			toret = toDecimalString();
+			break;
+		case BINARY:
+			toret = toBinaryString();
+			break;
+		case OCTAL:
+			toret = toOctalString();
+			break;
+		case HEXADECIMAL:
+			toret = toHexString();
+			break;
+		}
+		
+		return toret;
+	}
+
+	protected final int getA() {
+		return a;
+	}
+	
+	protected final int getB() {
+		return b;
+	}
+	
+	protected final int getC() {
+		return c;
+	}
+	
+	protected final int getD() {
+		return d;
+	}
+	
+	protected final void setIP(int a , int b , int c , int d ){
+		this.a = a ;
+		this.b = b ; 
+		this.c = c ;
+		this.d = d ;
+	}
+	
+	private final String toBinaryString(){
 		String toret = "";
 		toret = toBinaryString(a) 
 				+ " " + toBinaryString( b )
@@ -79,51 +124,6 @@ public class IP {
 		return toret;
 	}
 
-	public final String toDecimalString(){
-		return a + "." + b + "." + c + "." + d;
-	}
-	
-	public final String toHexString(){
-		String toret = "";
-		toret = toHexString(a)
-				+ " " + toHexString(b)
-				+ " " + toHexString(c)
-				+ " " + toHexString(d);
-		return toret;
-	}
-	
-	public final String toOctalString(){
-		String toret = "";
-		toret = toOctalString(a)
-				+ " " + toOctalString(b)
-				+ " " + toOctalString(c)
-				+ " " + toOctalString(d);
-		return toret;
-	}
-	
-	protected final int getA() {
-		return a;
-	}
-	
-	protected final int getB() {
-		return b;
-	}
-
-	protected final int getC() {
-		return c;
-	}
-
-	protected final int getD() {
-		return d;
-	}
-
-	protected final void setIP(int a , int b , int c , int d ){
-		this.a = a ;
-		this.b = b ; 
-		this.c = c ;
-		this.d = d ;
-	}
-
 	private final String toBinaryString( int n ){
 		String toret = Integer.toBinaryString(n);
 		while( toret.length() < 8 ){
@@ -131,12 +131,34 @@ public class IP {
 		}
 		return toret;
 	}
-	
+
+	private final String toDecimalString(){
+		return a + "." + b + "." + c + "." + d;
+	}
+
+	private final String toHexString(){
+		String toret = "";
+		toret = toHexString(a)
+				+ " " + toHexString(b)
+				+ " " + toHexString(c)
+				+ " " + toHexString(d);
+		return toret;
+	}
+
 	private final String toHexString( int n ){
 		String toret = Integer.toHexString(n);
 		if( toret.length() == 1 ){
 			toret = "0" + toret;
 		}
+		return toret;
+	}
+	
+	private final String toOctalString(){
+		String toret = "";
+		toret = toOctalString(a)
+				+ " " + toOctalString(b)
+				+ " " + toOctalString(c)
+				+ " " + toOctalString(d);
 		return toret;
 	}
 	

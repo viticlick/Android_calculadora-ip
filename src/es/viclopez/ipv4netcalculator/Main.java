@@ -29,23 +29,81 @@ import es.viclopez.IPClasses.SubNet;
 
 public class Main extends Activity {
 
+	//Publicidad admob
+	private AdView adView;
 	private Button btnReset;
 	private EditText ipA;
 	private EditText ipB;
-	private EditText ipC;
-	private EditText ipD;	
-	private EditText ipMask;
+	private EditText ipC;	
+	private EditText ipD;
 
-	private TextView outMask;
+	private EditText ipMask;
+	private final TextWatcher ipTextWatcher = new TextWatcher() {
+
+		@Override
+		public void afterTextChanged(Editable s) {
+
+			EditText textBox = (EditText) getCurrentFocus();
+
+			if( s.length() > 0 ){
+
+				if( getCurrentFocus().getId() == R.id.ipMask ){
+
+					if( Integer.valueOf( textBox.getText().toString()) > 31 ){
+						showErrorAlert( getString( R.string.errorHighCIDR ) ,
+								getCurrentFocus().getId() );
+					}else{
+						nextFocus();
+					}
+				}else{
+
+					if( Integer.valueOf( textBox.getText().toString()) > 255 ){
+						textBox.setText( s.subSequence(1, 3));
+						showErrorAlert( getString( R.string.errorIPpart ) ,
+								getCurrentFocus().getId() );
+					}
+
+					if( Integer.valueOf( textBox.getText().toString() ) > 25 
+							|| Integer.valueOf( textBox.getText().toString() ) == 0){
+						nextFocus();
+					}
+				}
+			}
+			calculate();
+		}
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			resetLabels();
+		}
+	};
+	private LinearLayout lytMain;
 	private TextView outAddress;
-	private TextView outWildCard;
-	private TextView outNetAddress;
 	private TextView outBroadcast;
 	private TextView outHosts;
 
-	//Publicidad admob
-	private AdView adView;
-	private LinearLayout lytMain;
+	private TextView outMask;
+	private TextView outNetAddress;
+
+	private TextView outWildCard; 
+
+	private final OnClickListener resetButton = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			ipA.requestFocus();
+			ipA.setText("");
+			ipB.setText("");
+			ipC.setText("");
+			ipD.setText("");
+			ipMask.setText("");
+		}
+	};
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,7 +111,15 @@ public class Main extends Activity {
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.main, menu);
 		return true;
-	} 
+	}
+
+	@Override
+	public void onDestroy(){
+		if(adView != null)
+			adView.destroy();
+		super.onDestroy();
+	}
+
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -112,19 +178,6 @@ public class Main extends Activity {
 
 	}
 
-	private final OnClickListener resetButton = new OnClickListener() {
-
-		@Override
-		public void onClick(View v) {
-			ipA.requestFocus();
-			ipA.setText("");
-			ipB.setText("");
-			ipC.setText("");
-			ipD.setText("");
-			ipMask.setText("");
-		}
-	};
-
 
 	private final void calculate() {
 
@@ -149,90 +202,6 @@ public class Main extends Activity {
 			printData(ip, mask, subNet, type);
 		}
 	}
-
-	private final void printData(IP ip, Mask mask, SubNet subNet, int type) {
-
-		outHosts.setText( Long.toString(subNet.getHosts() ) );
-		switch( type ){
-
-		case 0:
-			outAddress.setText( ip.toDecimalString() );
-			outMask.setText( mask.toDecimalString() );
-			outWildCard.setText( mask.getWildCard().toDecimalString() );
-			outNetAddress.setText( subNet.getNetAddres().toDecimalString() );
-			outBroadcast.setText( subNet.getBroadcastAddres().toDecimalString() );
-
-			break;
-		case 1:
-			outAddress.setText( ip.toBinaryString() );
-			outMask.setText( mask.toBinaryString() );
-			outWildCard.setText( mask.getWildCard().toBinaryString() );
-			outNetAddress.setText( subNet.getNetAddres().toBinaryString() );
-			outBroadcast.setText( subNet.getBroadcastAddres().toBinaryString() );
-			break;
-		case 2:
-			outAddress.setText( ip.toOctalString() );
-			outMask.setText( mask.toOctalString() );
-			outWildCard.setText( mask.getWildCard().toOctalString() );
-			outNetAddress.setText( subNet.getNetAddres().toOctalString() );
-			outBroadcast.setText( subNet.getBroadcastAddres().toOctalString() );
-			break;
-		case 3:
-			outAddress.setText( ip.toHexString() );
-			outMask.setText( mask.toHexString() );
-			outWildCard.setText( mask.getWildCard().toHexString() );
-			outNetAddress.setText( subNet.getNetAddres().toHexString() );
-			outBroadcast.setText( subNet.getBroadcastAddres().toHexString() );
-			break;
-
-		}
-	}
-
-
-	private final TextWatcher ipTextWatcher = new TextWatcher() {
-
-		@Override
-		public void onTextChanged(CharSequence s, int start, int before, int count) {
-			resetLabels();
-		}
-
-		@Override
-		public void beforeTextChanged(CharSequence s, int start, int count,
-				int after) {
-		}
-
-		@Override
-		public void afterTextChanged(Editable s) {
-
-			EditText textBox = (EditText) getCurrentFocus();
-
-			if( s.length() > 0 ){
-
-				if( getCurrentFocus().getId() == R.id.ipMask ){
-
-					if( Integer.valueOf( textBox.getText().toString()) > 31 ){
-						showErrorAlert( getString( R.string.errorHighCIDR ) ,
-								getCurrentFocus().getId() );
-					}else{
-						nextFocus();
-					}
-				}else{
-
-					if( Integer.valueOf( textBox.getText().toString()) > 255 ){
-						textBox.setText( s.subSequence(1, 3));
-						showErrorAlert( getString( R.string.errorIPpart ) ,
-								getCurrentFocus().getId() );
-					}
-
-					if( Integer.valueOf( textBox.getText().toString() ) > 25 
-							|| Integer.valueOf( textBox.getText().toString() ) == 0){
-						nextFocus();
-					}
-				}
-			}
-			calculate();
-		}
-	};
 
 	private final boolean enableCalc() {
 		return  ipA.getText().length() > 0
@@ -266,15 +235,42 @@ public class Main extends Activity {
 		}
 	}
 
-	private final void showErrorAlert( String errorMessage , final int fielId ){
-		new AlertDialog.Builder(this).setTitle(getString(R.string.error)).setMessage(errorMessage).setNeutralButton(getString(R.string.close),
-				new DialogInterface.OnClickListener() {
+	private final void printData(IP ip, Mask mask, SubNet subNet, int type) {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				findViewById( fielId ).requestFocus();
-			}
-		}).show();
+		outHosts.setText( Long.toString(subNet.getHosts() ) );
+		switch( type ){
+
+		case 0:
+			outAddress.setText( ip.toString( IP.BASE.DECIMAL ) );
+			outMask.setText( mask.toString(IP.BASE.DECIMAL) );
+			outWildCard.setText( mask.getWildCard().toString(IP.BASE.DECIMAL) );
+			outNetAddress.setText( subNet.getNetAddres().toString(IP.BASE.DECIMAL) );
+			outBroadcast.setText( subNet.getBroadcastAddres().toString(IP.BASE.DECIMAL) );
+
+			break;
+		case 1:
+			outAddress.setText( ip.toString( IP.BASE.BINARY ) );
+			outMask.setText( mask.toString( IP.BASE.BINARY ) );
+			outWildCard.setText( mask.getWildCard().toString( IP.BASE.BINARY ) );
+			outNetAddress.setText( subNet.getNetAddres().toString( IP.BASE.BINARY ) );
+			outBroadcast.setText( subNet.getBroadcastAddres().toString( IP.BASE.BINARY ) );
+			break;
+		case 2:
+			outAddress.setText( ip.toString( IP.BASE.OCTAL ) );
+			outMask.setText( mask.toString( IP.BASE.OCTAL ) );
+			outWildCard.setText( mask.getWildCard().toString( IP.BASE.OCTAL ) );
+			outNetAddress.setText( subNet.getNetAddres().toString( IP.BASE.OCTAL ) );
+			outBroadcast.setText( subNet.getBroadcastAddres().toString( IP.BASE.OCTAL ) );
+			break;
+		case 3:
+			outAddress.setText( ip.toString( IP.BASE.HEXADECIMAL ) );
+			outMask.setText( mask.toString( IP.BASE.HEXADECIMAL ) );
+			outWildCard.setText( mask.getWildCard().toString( IP.BASE.HEXADECIMAL ) );
+			outNetAddress.setText( subNet.getNetAddres().toString( IP.BASE.HEXADECIMAL ) );
+			outBroadcast.setText( subNet.getBroadcastAddres().toString( IP.BASE.HEXADECIMAL ) );
+			break;
+
+		}
 	}
 
 	private final void resetLabels(){
@@ -286,11 +282,15 @@ public class Main extends Activity {
 		outWildCard.setText("");
 	}
 
-	@Override
-	public void onDestroy(){
-		if(adView != null)
-			adView.destroy();
-		super.onDestroy();
+	private final void showErrorAlert( String errorMessage , final int fielId ){
+		new AlertDialog.Builder(this).setTitle(getString(R.string.error)).setMessage(errorMessage).setNeutralButton(getString(R.string.close),
+				new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				findViewById( fielId ).requestFocus();
+			}
+		}).show();
 	}
 
 }
