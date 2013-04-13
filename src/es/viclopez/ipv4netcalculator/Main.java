@@ -29,7 +29,6 @@ import es.viclopez.IPClasses.SubNet;
 
 public class Main extends Activity {
 
-	private Button btnCalculateNetwork;
 	private Button btnReset;
 	private EditText ipA;
 	private EditText ipB;
@@ -43,7 +42,7 @@ public class Main extends Activity {
 	private TextView outNetAddress;
 	private TextView outBroadcast;
 	private TextView outHosts;
-	
+
 	//Publicidad admob
 	private AdView adView;
 	private LinearLayout lytMain;
@@ -100,10 +99,6 @@ public class Main extends Activity {
 
 		ipA.requestFocus();
 
-		btnCalculateNetwork = (Button) findViewById( R.id.btCalculateNetwork );
-		btnCalculateNetwork.setEnabled(false);
-		btnCalculateNetwork.setOnClickListener( calculateButton );
-		
 		btnReset = (Button) findViewById( R.id.btnReset );
 		btnReset.setOnClickListener(resetButton);
 
@@ -118,7 +113,7 @@ public class Main extends Activity {
 	}
 
 	private final OnClickListener resetButton = new OnClickListener() {
-		
+
 		@Override
 		public void onClick(View v) {
 			ipA.requestFocus();
@@ -129,13 +124,11 @@ public class Main extends Activity {
 			ipMask.setText("");
 		}
 	};
-	
-	
-	private final OnClickListener calculateButton = new OnClickListener() {
 
-		@Override
-		public void onClick(View v) {
 
+	private final void calculate() {
+
+		if( enableCalc() ){
 			IP ip = new IP( Integer.valueOf( ipA.getText().toString() )
 					, Integer.valueOf( ipB.getText().toString() )
 					, Integer.valueOf( ipC.getText().toString() )
@@ -155,45 +148,46 @@ public class Main extends Activity {
 
 			printData(ip, mask, subNet, type);
 		}
+	}
 
-		private final void printData(IP ip, Mask mask, SubNet subNet, int type) {
+	private final void printData(IP ip, Mask mask, SubNet subNet, int type) {
 
-			outHosts.setText( Long.toString(subNet.getHosts() ) );
-			switch( type ){
+		outHosts.setText( Long.toString(subNet.getHosts() ) );
+		switch( type ){
 
-			case 0:
-				outAddress.setText( ip.toDecimalString() );
-				outMask.setText( mask.toDecimalString() );
-				outWildCard.setText( mask.getWildCard().toDecimalString() );
-				outNetAddress.setText( subNet.getNetAddres().toDecimalString() );
-				outBroadcast.setText( subNet.getBroadcastAddres().toDecimalString() );
+		case 0:
+			outAddress.setText( ip.toDecimalString() );
+			outMask.setText( mask.toDecimalString() );
+			outWildCard.setText( mask.getWildCard().toDecimalString() );
+			outNetAddress.setText( subNet.getNetAddres().toDecimalString() );
+			outBroadcast.setText( subNet.getBroadcastAddres().toDecimalString() );
 
-				break;
-			case 1:
-				outAddress.setText( ip.toBinaryString() );
-				outMask.setText( mask.toBinaryString() );
-				outWildCard.setText( mask.getWildCard().toBinaryString() );
-				outNetAddress.setText( subNet.getNetAddres().toBinaryString() );
-				outBroadcast.setText( subNet.getBroadcastAddres().toBinaryString() );
-				break;
-			case 2:
-				outAddress.setText( ip.toOctalString() );
-				outMask.setText( mask.toOctalString() );
-				outWildCard.setText( mask.getWildCard().toOctalString() );
-				outNetAddress.setText( subNet.getNetAddres().toOctalString() );
-				outBroadcast.setText( subNet.getBroadcastAddres().toOctalString() );
-				break;
-			case 3:
-				outAddress.setText( ip.toHexString() );
-				outMask.setText( mask.toHexString() );
-				outWildCard.setText( mask.getWildCard().toHexString() );
-				outNetAddress.setText( subNet.getNetAddres().toHexString() );
-				outBroadcast.setText( subNet.getBroadcastAddres().toHexString() );
-				break;
+			break;
+		case 1:
+			outAddress.setText( ip.toBinaryString() );
+			outMask.setText( mask.toBinaryString() );
+			outWildCard.setText( mask.getWildCard().toBinaryString() );
+			outNetAddress.setText( subNet.getNetAddres().toBinaryString() );
+			outBroadcast.setText( subNet.getBroadcastAddres().toBinaryString() );
+			break;
+		case 2:
+			outAddress.setText( ip.toOctalString() );
+			outMask.setText( mask.toOctalString() );
+			outWildCard.setText( mask.getWildCard().toOctalString() );
+			outNetAddress.setText( subNet.getNetAddres().toOctalString() );
+			outBroadcast.setText( subNet.getBroadcastAddres().toOctalString() );
+			break;
+		case 3:
+			outAddress.setText( ip.toHexString() );
+			outMask.setText( mask.toHexString() );
+			outWildCard.setText( mask.getWildCard().toHexString() );
+			outNetAddress.setText( subNet.getNetAddres().toHexString() );
+			outBroadcast.setText( subNet.getBroadcastAddres().toHexString() );
+			break;
 
-			}
 		}
-	};
+	}
+
 
 	private final TextWatcher ipTextWatcher = new TextWatcher() {
 
@@ -211,7 +205,7 @@ public class Main extends Activity {
 		public void afterTextChanged(Editable s) {
 
 			EditText textBox = (EditText) getCurrentFocus();
-			
+
 			if( s.length() > 0 ){
 
 				if( getCurrentFocus().getId() == R.id.ipMask ){
@@ -236,12 +230,12 @@ public class Main extends Activity {
 					}
 				}
 			}
-			enableButton();
+			calculate();
 		}
 	};
 
-	private final void enableButton() {
-		btnCalculateNetwork.setEnabled( ipA.getText().length() > 0
+	private final boolean enableCalc() {
+		return  ipA.getText().length() > 0
 				&& Integer.valueOf( ipA.getText().toString() ) <= 255
 				&& ipB.getText().length() > 0 
 				&& Integer.valueOf( ipB.getText().toString() ) <= 255
@@ -250,7 +244,7 @@ public class Main extends Activity {
 				&& ipD.getText().length() > 0
 				&& Integer.valueOf( ipD.getText().toString() ) <= 255
 				&& ipMask.getText().length() > 0
-				&& Integer.valueOf( ipMask.getText().toString() ) <= 31);
+				&& Integer.valueOf( ipMask.getText().toString() ) <= 31;
 	}
 
 	private final void nextFocus() {
@@ -267,7 +261,7 @@ public class Main extends Activity {
 		case R.id.ipD:
 			ipMask.requestFocus();
 		case R.id.ipMask:
-			btnCalculateNetwork.requestFocus();
+			btnReset.requestFocus();
 			break;
 		}
 	}
@@ -282,7 +276,7 @@ public class Main extends Activity {
 			}
 		}).show();
 	}
-	
+
 	private final void resetLabels(){
 		outAddress.setText("");
 		outBroadcast.setText("");
@@ -291,12 +285,12 @@ public class Main extends Activity {
 		outNetAddress.setText("");
 		outWildCard.setText("");
 	}
-	
+
 	@Override
 	public void onDestroy(){
-	      if(adView != null)
-	         adView.destroy();
-	      super.onDestroy();
+		if(adView != null)
+			adView.destroy();
+		super.onDestroy();
 	}
 
 }

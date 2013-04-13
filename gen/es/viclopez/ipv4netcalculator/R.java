@@ -30,32 +30,31 @@ public final class R {
     }
     public static final class id {
         public static final int TextView01=0x7f0a0000;
-        public static final int about=0x7f0a001a;
-        public static final int btCalculateNetwork=0x7f0a0009;
-        public static final int btnReset=0x7f0a000a;
+        public static final int about=0x7f0a0019;
+        public static final int btnReset=0x7f0a0009;
         public static final int exit=0x7f0a0001;
         public static final int ipA=0x7f0a0003;
         public static final int ipB=0x7f0a0004;
         public static final int ipC=0x7f0a0005;
         public static final int ipD=0x7f0a0006;
         public static final int ipMask=0x7f0a0008;
-        public static final int lblAddress=0x7f0a000c;
-        public static final int lblBroadcast=0x7f0a0014;
+        public static final int lblAddress=0x7f0a000b;
+        public static final int lblBroadcast=0x7f0a0013;
         public static final int lblCIDR=0x7f0a0007;
-        public static final int lblHosts=0x7f0a0016;
+        public static final int lblHosts=0x7f0a0015;
         public static final int lblInsertIP=0x7f0a0002;
-        public static final int lblMask=0x7f0a000e;
-        public static final int lblNetAddress=0x7f0a0012;
-        public static final int lblWildCard=0x7f0a0010;
-        public static final int lytMain=0x7f0a0018;
-        public static final int outAddress=0x7f0a000d;
-        public static final int outBroadcast=0x7f0a0015;
-        public static final int outHosts=0x7f0a0017;
-        public static final int outMask=0x7f0a000f;
-        public static final int outNetAddress=0x7f0a0013;
-        public static final int outWildCard=0x7f0a0011;
-        public static final int outputLayout=0x7f0a000b;
-        public static final int settings=0x7f0a0019;
+        public static final int lblMask=0x7f0a000d;
+        public static final int lblNetAddress=0x7f0a0011;
+        public static final int lblWildCard=0x7f0a000f;
+        public static final int lytMain=0x7f0a0017;
+        public static final int outAddress=0x7f0a000c;
+        public static final int outBroadcast=0x7f0a0014;
+        public static final int outHosts=0x7f0a0016;
+        public static final int outMask=0x7f0a000e;
+        public static final int outNetAddress=0x7f0a0012;
+        public static final int outWildCard=0x7f0a0010;
+        public static final int outputLayout=0x7f0a000a;
+        public static final int settings=0x7f0a0018;
     }
     public static final class layout {
         public static final int about=0x7f030000;
@@ -65,34 +64,33 @@ public final class R {
         public static final int main=0x7f090000;
     }
     public static final class string {
-        public static final int About=0x7f070019;
-        public static final int about=0x7f070018;
+        public static final int About=0x7f070018;
+        public static final int about=0x7f070017;
         public static final int action_settings=0x7f070001;
-        public static final int address=0x7f07000d;
+        public static final int address=0x7f07000c;
         public static final int app_name=0x7f070000;
-        public static final int base=0x7f070012;
-        public static final int binary=0x7f070015;
-        public static final int broadcast=0x7f07000e;
-        public static final int calculate=0x7f070006;
-        public static final int cidr=0x7f070009;
+        public static final int base=0x7f070011;
+        public static final int binary=0x7f070014;
+        public static final int broadcast=0x7f07000d;
+        public static final int cidr=0x7f070008;
         public static final int close=0x7f070002;
-        public static final int decimal=0x7f070014;
+        public static final int decimal=0x7f070013;
         public static final int error=0x7f070003;
         public static final int errorHighCIDR=0x7f070004;
         public static final int errorIPpart=0x7f070005;
-        public static final int exit=0x7f07001b;
-        public static final int hexadecimal=0x7f070017;
-        public static final int hosts=0x7f07000c;
-        public static final int ip=0x7f070008;
-        public static final int mask=0x7f070010;
-        public static final int netAddres=0x7f07000f;
-        public static final int octal=0x7f070016;
-        public static final int point=0x7f07000a;
-        public static final int reset=0x7f070007;
-        public static final int selectBase=0x7f070013;
-        public static final int settings=0x7f07001a;
-        public static final int slash=0x7f07000b;
-        public static final int wildcard=0x7f070011;
+        public static final int exit=0x7f07001a;
+        public static final int hexadecimal=0x7f070016;
+        public static final int hosts=0x7f07000b;
+        public static final int ip=0x7f070007;
+        public static final int mask=0x7f07000f;
+        public static final int netAddres=0x7f07000e;
+        public static final int octal=0x7f070015;
+        public static final int point=0x7f070009;
+        public static final int reset=0x7f070006;
+        public static final int selectBase=0x7f070012;
+        public static final int settings=0x7f070019;
+        public static final int slash=0x7f07000a;
+        public static final int wildcard=0x7f070010;
     }
     public static final class style {
         /** 

@@ -6,7 +6,6 @@
     <string name="error">Error</string>
     <string name="errorHighCIDR">El valor del CIDR no puede ser mayor a 31</string>
     <string name="errorIPpart">El valor no puede ser mayor a 255</string>
-    <string name="calculate">Calcular</string>
     <string name="reset">Reinicar</string>
     <string name="ip">IP:</string>
     <string name="cidr">CIDR:</string>

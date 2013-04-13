@@ -81,14 +81,10 @@
                     android:maxLength="2" />
 
                 <Button
-                    android:id="@+id/btCalculateNetwork"
-                    style="@style/Button"
-                    android:text="@string/calculate" />
-
-                <Button
                     android:id="@+id/btnReset"
                     style="@style/Button"
                     android:text="@string/reset" />
+
             </LinearLayout>
 
 
