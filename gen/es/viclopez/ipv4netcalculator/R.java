@@ -74,6 +74,7 @@ public final class R {
         public static final int broadcast=0x7f07000d;
         public static final int cidr=0x7f070008;
         public static final int close=0x7f070002;
+        public static final int copy=0x7f07001b;
         public static final int decimal=0x7f070013;
         public static final int error=0x7f070003;
         public static final int errorHighCIDR=0x7f070004;

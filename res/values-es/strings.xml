@@ -27,4 +27,5 @@
     <string name="About">Acerca de...</string>
     <string name="settings">Configuración</string>
     <string name="exit">Salir</string>
+    <string name="copy">Copia al portapapeles:</string>
 </resources>

@@ -1,10 +1,13 @@
 package es.viclopez.ipv4netcalculator;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ClipboardManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -18,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
@@ -122,7 +126,6 @@ public class Main extends Activity {
 		super.onDestroy();
 	}
 
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -165,6 +168,13 @@ public class Main extends Activity {
 		outBroadcast = (TextView) findViewById( R.id.outBroadcast );
 		outHosts = (TextView) findViewById( R.id.outHosts );
 
+		outAddress.setOnClickListener( copyToClipboard );
+		outMask.setOnClickListener( copyToClipboard );
+		outWildCard.setOnClickListener(copyToClipboard);
+		outNetAddress.setOnClickListener(copyToClipboard);
+		outBroadcast.setOnClickListener(copyToClipboard);
+		outHosts.setOnClickListener(copyToClipboard);
+		
 		ipA.requestFocus();
 
 		btnReset = (Button) findViewById( R.id.btnReset );
@@ -180,7 +190,18 @@ public class Main extends Activity {
 
 	}
 
-
+	private OnClickListener copyToClipboard = new OnClickListener() {
+		
+		@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+		@Override
+		public void onClick(View v) {
+			TextView tv = (TextView) v;
+			ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+			clipboard.setText( tv.getText().toString() ) ;
+			Toast.makeText(getApplicationContext(), getString(R.string.copy) +" " + tv.getText().toString() , Toast.LENGTH_SHORT ).show();
+		}
+	}; 
+	
 	private final void calculate() {
 
 		if( enableCalc() ){
