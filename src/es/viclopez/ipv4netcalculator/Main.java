@@ -258,6 +258,12 @@ public class Main extends Activity {
 		outWildCard.setText("");
 	}
 
+	@Override
+	protected void onResume() {
+		calculate();
+		super.onResume();
+	}
+	
 	private final void showErrorAlert( String errorMessage , final int fielId ){
 		new AlertDialog.Builder(this).setTitle(getString(R.string.error)).setMessage(errorMessage).setNeutralButton(getString(R.string.close),
 				new DialogInterface.OnClickListener() {
