@@ -28,6 +28,7 @@ import com.google.ads.AdSize;
 import com.google.ads.AdView;
 
 import es.viclopez.IPClasses.IP;
+import es.viclopez.IPClasses.IP.Base;
 import es.viclopez.IPClasses.Mask;
 import es.viclopez.IPClasses.SubNet;
 
@@ -262,11 +263,25 @@ public class Main extends Activity {
 
 		outHosts.setText( Long.toString(subNet.getHosts() ) );
 
-		outAddress.setText( ip.toString( type ) );
-		outMask.setText( mask.toString( type) );
-		outWildCard.setText( mask.getWildCard().toString( type) );
-		outNetAddress.setText( subNet.getNetAddres().toString( type ) );
-		outBroadcast.setText( subNet.getBroadcastAddres().toString( type ) );
+		IP.Base base;
+		switch( type ){
+		case 1:
+			base = Base.BINARY;
+			break;
+		case 2:
+			base = Base.OCTAL;
+			break;
+		case 3:
+			base = Base.HEXADECIMAL;
+			break;
+		default:
+			base = Base.DECIMAL;
+		}
+		outAddress.setText( ip.toString( base ) );
+		outMask.setText( mask.toString( base) );
+		outWildCard.setText( mask.getWildCard().toString( base ) );
+		outNetAddress.setText( subNet.getNetAddres().toString( base ) );
+		outBroadcast.setText( subNet.getBroadcastAddres().toString( base ) );
 
 	}
 
