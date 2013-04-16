@@ -177,12 +177,12 @@ public class Main extends Activity {
 		outBroadcast = (TextView) findViewById( R.id.outBroadcast );
 		outHosts = (TextView) findViewById( R.id.outHosts );
 
-//		outAddress.setOnClickListener( copyToClipboard );
-//		outMask.setOnClickListener( copyToClipboard );
-//		outWildCard.setOnClickListener(copyToClipboard);
-//		outNetAddress.setOnClickListener(copyToClipboard);
-//		outBroadcast.setOnClickListener(copyToClipboard);
-//		outHosts.setOnClickListener(copyToClipboard);
+		outAddress.setOnClickListener( copyToClipboard );
+		outMask.setOnClickListener( copyToClipboard );
+		outWildCard.setOnClickListener(copyToClipboard);
+		outNetAddress.setOnClickListener(copyToClipboard);
+		outBroadcast.setOnClickListener(copyToClipboard);
+		outHosts.setOnClickListener(copyToClipboard);
 		
 		ipA.requestFocus();
 		
@@ -217,9 +217,21 @@ public class Main extends Activity {
 		@Override
 		public void onClick(View v) {
 			TextView tv = (TextView) v;
-			ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-			clipboard.setText( tv.getText().toString() ) ;
-			Toast.makeText(getApplicationContext(), getString(R.string.copy) +" " + tv.getText().toString() , Toast.LENGTH_SHORT ).show();
+			String copyString = tv.getText().toString();
+			if( android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.HONEYCOMB) {
+
+//				ClipboardManager clipboard = (ClipboardManager) getSystemService( CLIPBOARD_SERVICE );
+//				clipboard.setText( copyString ) ;
+				
+			}else{
+				android.content.ClipboardManager clipboard = 
+						(android.content.ClipboardManager) getSystemService( 
+								getApplicationContext().CLIPBOARD_SERVICE );
+				
+			    android.content.ClipData clip = android.content.ClipData.newPlainText("Copied Text", copyString );
+			    clipboard.setPrimaryClip(clip);
+				Toast.makeText( getApplicationContext(), getString( R.string.copy) +"\n" + copyString , Toast.LENGTH_SHORT ).show();
+			}
 		}
 	}; 
 	
@@ -317,7 +329,9 @@ public class Main extends Activity {
 	}
 	
 	private final void showErrorAlert( String errorMessage , final int fielId ){
-		new AlertDialog.Builder(this).setTitle(getString(R.string.error)).setMessage(errorMessage).setNeutralButton(getString(R.string.close),
+		new AlertDialog.Builder(this).setTitle(
+				getString(R.string.error)).setMessage(errorMessage).setNeutralButton(
+						getString(R.string.close),
 				new DialogInterface.OnClickListener() {
 
 			@Override
@@ -347,7 +361,8 @@ public class Main extends Activity {
 	
 	private int getValueTypeFromPreferences(){
 		
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		SharedPreferences sharedPreferences = 
+				PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
 		String prefValue = sharedPreferences.getString( "base" , "-1" );
 
