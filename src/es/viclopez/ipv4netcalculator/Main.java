@@ -348,7 +348,6 @@ public class Main extends Activity {
 				long id) {
 			typeBase = posicion;
 			calculate();
-			//Toast.makeText(getApplicationContext(), typeBase, Toast.LENGTH_LONG).show();
 		}
 
 		@Override

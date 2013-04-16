@@ -19,7 +19,7 @@
     <string name="mask">Mask:</string>
     <string name="wildcard">Wilcard:</string>
     <string name="base">Base</string>
-    <string name="selectBase">Select the base of solution</string>
+    <string name="selectBase">Select default base</string>
     <string name="decimal">Decimal</string>
     <string name="binary">Binary</string>
     <string name="octal">Octal</string>

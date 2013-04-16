@@ -18,7 +18,7 @@
     <string name="mask">Máscara:</string>
     <string name="wildcard">Comodín:</string>
     <string name="base">Base</string>
-    <string name="selectBase">Selecciona la base de los resultados</string>
+    <string name="selectBase">Base por defecto</string>
     <string name="decimal">Decimal</string>
     <string name="binary">Binario</string>
     <string name="octal">Octal</string>
