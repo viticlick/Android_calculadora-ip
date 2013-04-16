@@ -17,9 +17,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +47,10 @@ public class Main extends Activity {
 	private EditText ipD;
 
 	private EditText ipMask;
+	
+	private Spinner spinnerBase;
+	
+	private int typeBase;
 	private final TextWatcher ipTextWatcher = new TextWatcher() {
 
 		@Override
@@ -169,15 +177,27 @@ public class Main extends Activity {
 		outBroadcast = (TextView) findViewById( R.id.outBroadcast );
 		outHosts = (TextView) findViewById( R.id.outHosts );
 
-		outAddress.setOnClickListener( copyToClipboard );
-		outMask.setOnClickListener( copyToClipboard );
-		outWildCard.setOnClickListener(copyToClipboard);
-		outNetAddress.setOnClickListener(copyToClipboard);
-		outBroadcast.setOnClickListener(copyToClipboard);
-		outHosts.setOnClickListener(copyToClipboard);
+//		outAddress.setOnClickListener( copyToClipboard );
+//		outMask.setOnClickListener( copyToClipboard );
+//		outWildCard.setOnClickListener(copyToClipboard);
+//		outNetAddress.setOnClickListener(copyToClipboard);
+//		outBroadcast.setOnClickListener(copyToClipboard);
+//		outHosts.setOnClickListener(copyToClipboard);
 		
 		ipA.requestFocus();
-
+		
+		spinnerBase = (Spinner) findViewById( R.id.spinnerBase);
+		//Crea un adaptador para rellenar el array
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, 
+				R.array.bases, 
+				android.R.layout.simple_spinner_item);
+		//Indica el layout para utilizar cuando aparece la lista
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		//Aplica el adaptador del spinner
+		spinnerBase.setAdapter(adapter);
+		spinnerBase.setOnItemSelectedListener(spinnerListener);
+		spinnerBase.setSelection( getValueTypeFromPreferences() );
+		
 		btnReset = (Button) findViewById( R.id.btnReset );
 		btnReset.setOnClickListener(resetButton);
 
@@ -216,14 +236,9 @@ public class Main extends Activity {
 			SubNet subNet = new SubNet( ip , mask );
 
 
-			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//			int type = getValueTypeFromPreferences();
 
-			String prefValue = sharedPreferences.getString( "base" , "-1" );
-
-
-			int type = Integer.valueOf(prefValue);
-
-			printData(ip, mask, subNet, type);
+			printData(ip, mask, subNet, typeBase);
 		}
 	}
 
@@ -297,6 +312,7 @@ public class Main extends Activity {
 	@Override
 	protected void onResume() {
 		calculate();
+		spinnerBase.setSelection( getValueTypeFromPreferences() );
 		super.onResume();
 	}
 	
@@ -309,6 +325,33 @@ public class Main extends Activity {
 				findViewById( fielId ).requestFocus();
 			}
 		}).show();
+	}
+
+	private OnItemSelectedListener spinnerListener = new OnItemSelectedListener() {
+
+		@Override
+		public void onItemSelected(AdapterView<?> arg0, View arg1, int posicion,
+				long id) {
+			typeBase = posicion;
+			calculate();
+			//Toast.makeText(getApplicationContext(), typeBase, Toast.LENGTH_LONG).show();
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	};
+	
+	private int getValueTypeFromPreferences(){
+		
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+		String prefValue = sharedPreferences.getString( "base" , "-1" );
+
+		return  Integer.valueOf(prefValue);
 	}
 
 }

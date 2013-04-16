@@ -14,7 +14,8 @@
             android:orientation="vertical"
             android:paddingBottom="@dimen/padding_output"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin" >
+            android:paddingTop="@dimen/activity_vertical_margin" 
+            android:paddingRight="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:id="@+id/lblInsertIP"
@@ -65,26 +66,57 @@
                     android:ems="10" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/lblCIDR"
+            <TableLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cidr" />
+                android:layout_height="match_parent" >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-                <EditText
-                    android:id="@+id/ipMask"
-                    style="@style/TextViewIP.Mask"
-                    android:maxLength="2" />
+                    <TextView
+                        android:id="@+id/lblCIDR"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cidr" />
 
-                <Button
-                    android:id="@+id/btnReset"
-                    style="@style/Button"
-                    android:text="@string/reset" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/lblBase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_base"
+                        android:text="@string/base" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <EditText
+                        android:id="@+id/ipMask"
+                        style="@style/TextViewIP.Mask"
+                        android:maxLength="2" >
+
+                        <requestFocus />
+                    </EditText>
+
+                    <Spinner
+                        android:id="@+id/spinnerBase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" 
+                        android:layout_marginLeft="@dimen/margin_base"/>
+
+                    <Button
+                        android:id="@+id/btnReset"
+                        style="@style/Button"
+                        android:text="@string/reset" 
+                        android:layout_marginLeft="@dimen/margin_base"/>
+
+                </TableRow>
+            </TableLayout>
 
             <LinearLayout
                 android:id="@+id/outputLayout"
